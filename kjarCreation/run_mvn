@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#BA_VERSIONS="-Dba.bom.version=7.9.0.redhat-00002 -Dba.library.version=7.44.0.Final-redhat-00003"
+
+#mvn clean compile exec:exec -DgenerateModel=NO ${BA_VERSIONS}
+mvn clean compile exec:exec -DgenerateModel=YES ${BA_VERSIONS}
+

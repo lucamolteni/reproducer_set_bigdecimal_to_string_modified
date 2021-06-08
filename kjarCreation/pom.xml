@@ -1,0 +1,199 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example.reproducer</groupId>
+  <artifactId>reproducer_set_bigdecimal_to_string</artifactId>
+  <packaging>kjar</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+
+    <!-- RHPAM/DM BOM version -->
+    <!--<ba.bom.version>7.0.0.GA-redhat-2</ba.bom.version>-->
+    <!--<ba.bom.version>7.0.1.GA-redhat-2</ba.bom.version>-->
+    <!--<ba.bom.version>7.1.0.GA-redhat-00003</ba.bom.version>-->
+    <!--<ba.bom.version>7.1.1.GA-redhat-00001</ba.bom.version>-->
+    <!--<ba.bom.version>7.2.0.GA-redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.2.1.GA-redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.3.0.GA-redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.3.1.GA-redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.4.0.GA-redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.4.1.GA-redhat-00001</ba.bom.version>-->
+    <!--<ba.bom.version>7.5.0.redhat-00004</ba.bom.version>-->
+    <!--<ba.bom.version>7.5.1.redhat-00001</ba.bom.version>-->
+    <!--<ba.bom.version>7.6.0.redhat-00004</ba.bom.version>-->
+    <!--<ba.bom.version>7.7.0.redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.7.1.redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.8.0.redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.8.1.redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.9.0.redhat-00002</ba.bom.version>-->
+    <!--<ba.bom.version>7.9.1.redhat-00003</ba.bom.version>-->
+    <!--<ba.bom.version>7.10.0.redhat-00004</ba.bom.version>-->
+    <!--<ba.bom.version>7.10.1.redhat-00001</ba.bom.version>-->
+
+    <!-- RHPAM/DM library version -->
+    <!--<ba.library.version>7.5.0.Final-redhat-4</ba.library.version>-->      <!-- 7.0.0 -->
+    <!--<ba.library.version>7.5.0.Final-redhat-6</ba.library.version>-->      <!-- 7.0.1 -->
+    <!--<ba.library.version>7.11.0.Final-redhat-00003</ba.library.version>--> <!-- 7.1.0 -->
+    <!--<ba.library.version>7.11.0.Final-redhat-00004</ba.library.version>--> <!-- 7.1.1 -->
+    <!--<ba.library.version>7.14.0.Final-redhat-00002</ba.library.version>--> <!-- 7.2.0 -->
+    <!--<ba.library.version>7.14.0.Final-redhat-00004</ba.library.version>--> <!-- 7.2.1 -->
+    <!--<ba.library.version>7.18.0.Final-redhat-00002</ba.library.version>--> <!-- 7.3.0 -->
+    <!--<ba.library.version>7.18.0.Final-redhat-00004</ba.library.version>--> <!-- 7.3.1 -->
+    <!--<ba.library.version>7.23.0.Final-redhat-00002</ba.library.version>--> <!-- 7.4.0 -->
+    <!--<ba.library.version>7.23.0.Final-redhat-00003</ba.library.version>--> <!-- 7.4.1 -->
+    <!--<ba.library.version>7.26.0.Final-redhat-00005</ba.library.version>--> <!-- 7.5.0 -->
+    <!--<ba.library.version>7.26.0.Final-redhat-00006</ba.library.version>--> <!-- 7.5.1 -->
+    <!--<ba.library.version>7.30.0.Final-redhat-00003</ba.library.version>--> <!-- 7.6.0 -->
+    <!--<ba.library.version>7.33.0.Final-redhat-00002</ba.library.version>--> <!-- 7.7.0 -->
+    <!--<ba.library.version>7.33.0.Final-redhat-00003</ba.library.version>--> <!-- 7.7.1 -->
+    <!--<ba.library.version>7.39.0.Final-redhat-00005</ba.library.version>--> <!-- 7.8.0 -->
+    <!--<ba.library.version>7.39.0.Final-redhat-00007</ba.library.version>--> <!-- 7.8.1 -->
+    <!--<ba.library.version>7.44.0.Final-redhat-00003</ba.library.version>--> <!-- 7.9.0 -->
+    <!--<ba.library.version>7.44.0.Final-redhat-00006</ba.library.version>--> <!-- 7.9.1 -->
+    <!--<ba.library.version>7.48.0.Final-redhat-00004</ba.library.version>--> <!-- 7.10.0 -->
+    <!--<ba.library.version>7.48.0.Final-redhat-00006</ba.library.version>--> <!-- 7.10.1 -->
+<!--    <ba.library.version>7.53.0.Final</ba.library.version>&lt;!&ndash; upstream &ndash;&gt;-->
+<!--    <drools.bom.version>7.53.0.Final</drools.bom.version>&lt;!&ndash; upstream BOM version &ndash;&gt; -->
+    <drools.bom.version>7.52.1-SNAPSHOT</drools.bom.version><!-- upstream BOM version -->
+
+    <main.class>com.example.reproducer.DroolsTest</main.class>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>jboss-enterprise-maven-repository</id>
+      <url>http://maven.repository.redhat.com/ga/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Repository Group</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <dependencyManagement>
+    <dependencies>
+<!--
+      <dependency>
+        <groupId>com.redhat.ba</groupId>
+        <artifactId>ba-platform-bom</artifactId>
+        <version>${ba.bom.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+  -->
+      <dependency>
+        <groupId>org.drools</groupId>
+        <artifactId>drools-bom</artifactId>
+        <version>${drools.bom.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-compiler</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-model-compiler</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie</groupId>
+      <artifactId>kie-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-engine-classic</artifactId>
+    </dependency>
+    <!-- logging -->
+<!--
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.30</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+  -->
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-maven-plugin</artifactId>
+<!--        <version>${ba.library.version}</version>-->
+        <version>${drools.bom.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-classpath</argument>
+            <classpath/>
+            <argument>${main.class}</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+          <debug>true</debug>
+          <debuglevel>lines,vars,source</debuglevel> 
+        </configuration>
+      </plugin> 
+    </plugins>
+  </build>
+
+</project>

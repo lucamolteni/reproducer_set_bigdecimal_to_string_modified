@@ -1,0 +1,12 @@
+package com.example.reproducer;
+
+import java.math.*;
+import java.util.*;
+import java.time.LocalDate;
+import org.slf4j.Logger;
+
+global Logger logger;
+
+import com.example.reproducer.Fact;
+
+dialect "mvel"

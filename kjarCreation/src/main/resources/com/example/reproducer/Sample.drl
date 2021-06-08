@@ -1,0 +1,29 @@
+package com.example.reproducer
+
+dialect "mvel"
+
+rule "rule cannot find symbol"
+    when
+        $fact : Fact( $bd: bd )
+    then
+	$fact.文字列 = $bd;
+        System.out.println("***** $fact.文字列 = "+$fact.文字列);
+end
+
+rule "rule cannot find symbol 2"
+    when
+        $fact : Fact( $bd: bd )
+    then
+	$fact.text = $bd;
+        System.out.println("***** $fact.text = "+$fact.text);
+end
+
+rule "rule_set_bd_to_str"
+    no-loop true
+    when
+        $fact : Fact( $bd: bd )
+    then
+	$fact.str = $bd;
+        System.out.println("***** $fact.str = "+$fact.str);
+end
+
